@@ -1,6 +1,9 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/kindred/paddleball:$_PR_NUMBER$_HEAD_BRANCH', '.' ]
-  
+  args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/kindred/paddleball:$_VERSION.$_PR_NUMBER', '.' ]
+
+substitutions:
+  _VERSION: "1.0."
+
 images:
-- 'gcr.io/$PROJECT_ID/kindred/paddleball:$_PR_NUMBER$_HEAD_BRANCH'
+- 'gcr.io/$PROJECT_ID/kindred/paddleball:$_VERSION.$_PR_NUMBER'
