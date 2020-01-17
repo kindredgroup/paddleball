@@ -8,6 +8,10 @@ steps:
   wait_for: ['version']
   id: 'latest'
 
+steps:
+- name: gcr.io/cloud-builders/docker
+  args: ['bash', '-c', 'docker pull gcr.io/$PROJECT_ID/kindred/paddleball:$_VERSION && { echo "refusing to overwrite image!"; exit 1; } || echo "continuing, version of image not built yet"']
+
 substitutions:
   _VERSION: '1.0.1' # manually update
 
