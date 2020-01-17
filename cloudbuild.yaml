@@ -4,7 +4,7 @@ steps:
   id: 'version'
 
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['tag', 'gcr.io/$PROJECT_ID/kindred/paddleball:$_VERSION', 'gcr.io/$PROJECT_ID/kindred/paddleball:latest']
+  args: ['tag', 'gcr.io/$PROJECT_ID/kindred/paddleball:$_VERSION', 'gcr.io/$PROJECT_ID/kindred/paddleball']
   wait_for: ['version']
   id: 'latest'
 
