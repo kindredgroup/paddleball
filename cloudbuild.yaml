@@ -1,9 +1,16 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/kindred/paddleball:$_VERSION$_PR_NUMBER', '.' ]
+  args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/kindred/paddleball:$_VERSION', '.' ]
+  id: 'version'
+
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['tag', 'gcr.io/$PROJECT_ID/kindred/paddleball:$_VERSION', 'gcr.io/$PROJECT_ID/kindred/paddleball:latest']
+  wait_for: ['version']
+  id: 'latest'
 
 substitutions:
-  _VERSION: "1.0.0" # manually update
+  _VERSION: '1.0.0' # manually update'
 
 images:
-- 'gcr.io/$PROJECT_ID/kindred/paddleball:$_VERSION$_PR_NUMBER'
+- 'gcr.io/$PROJECT_ID/kindred/paddleball:$_VERSION'
+- 'gcr.io/$PROJECT_ID/kindred/paddleball:latest'
