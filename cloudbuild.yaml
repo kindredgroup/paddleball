@@ -9,7 +9,7 @@ steps:
   id: 'latest'
 
 steps:
-- name: gcr.io/cloud-builders/docker
+- name: ubuntu
   args: ['bash', '-c', 'docker pull gcr.io/$PROJECT_ID/kindred/paddleball:$_VERSION && { echo "refusing to overwrite image!"; exit 1; } || echo "continuing, version of image not built yet"']
 
 substitutions:
